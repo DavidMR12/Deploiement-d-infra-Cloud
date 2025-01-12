@@ -1,0 +1,33 @@
+---
+# https://docs.ansible.com/ansible/2.9/modules/gitlab_user_module.html
+# https://docs.ansible.com/ansible/latest/collections/community/general/gitlab_user_module.html
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
+# https://xavki.blog/ansible-comment-generer-des-clefs-ssh-et-les-pousser-organiser-un-reboot/
+
+- name: include vault
+  ansible.builtin.include_vars:
+    file: passwords.yml
+
+- name: Check if GitLab is already installed.
+  stat: path=/usr/bin/gitlab-ctl
+  register: gitlab_file
+  when: "'manager' in inventory_hostname"
+
+- name: Configure GitLab registry
+  lineinfile:
+    dest: /etc/gitlab/gitlab.rb
+    regexp: '^gitlab_rails\[''registry_enabled''\]'
+    line: "gitlab_rails['registry_enabled'] = true"
+  notify: Restart GitLab
+  when: "'manager' in inventory_hostname"
+
+- name: Set up GitLab administrators
+  shell: "sudo gitlab-rails runner \"User.create(name: '{{ item.name }}',username: '{{ item.name }}', email: '{{ item.email }}', password: '{{ item.password }}', admin: true)\""
+  become: true
+  loop:
+    - { name: "rafina_d", username: "rafina_d", email: "rafina_d@etna-alternance.net", password: "{{ rafina_d_password }}" }
+    - { name: "rinaz_a", username: "rinaz_a", email: "rinaz_a@etna-alternance.net", password: "{{ rinaz_a_password }}" }
+    - { name: "makoss_d", username: "makoss_d", email: "makoss_d@etna-alternance.net", password: "{{ makoss_d_password }}" }
+    - { name: "mylond_o", username: "mylond_o", email: "mylond_o@etna-alternance.net", password: "{{ mylond_o_password }}" }
+    - { name: "belaid_i", username: "belaid_i", email: "belaid_i@etna-alternance.net", password: "{{ bleaid_i_password }}" }
+  when: "'managers' in group_names"

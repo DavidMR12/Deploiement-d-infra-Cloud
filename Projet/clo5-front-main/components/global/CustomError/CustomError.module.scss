@@ -1,0 +1,41 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.custom-error {
+  flex-grow: 1;
+  display: flex;
+  gap: 8vw;
+  align-items: center;
+  background-color: var(--gray--900);
+  color: var(--color--light);
+  margin: 0 calc(var(--padding--body) * -1); // 0 calc(var(--padding--body) * -1) 1.7rem when there is a footer
+
+  @include media-breakpoint-down(lg) {
+    justify-content: center;
+    padding: var(--padding--body);
+  }
+
+  &__content {
+    max-width: 47rem;
+    margin-right: var(--padding--body);
+  }
+
+  &__background {
+    width: 50vw;
+    height: auto;
+    max-height: calc((var(--vh, 1vh) * 100) - var(--header--height) - 5.8rem);
+    object-fit: cover;
+
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1.6rem;
+    color: var(--color--light);
+  }
+
+  &__buttons {
+    margin-top: 4rem;
+  }
+}

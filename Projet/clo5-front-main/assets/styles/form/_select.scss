@@ -1,0 +1,102 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+// Select
+.form-select {
+  &-wrapper {
+    position: relative;
+    margin-top: 1rem;
+
+    @include media-breakpoint-down(lg) {
+      margin-top: 0.6rem;
+    }
+
+    &:focus,
+    &:hover {
+      .form-select__trigger,
+      .form-select__content {
+        border-color: var(--color--dark);
+      }
+    }
+  }
+
+  &__trigger {
+    font-family: var(--font-family--primary);
+    width: 100%;
+    color: var(--color--dark);
+    background-color: var(--color--light);
+    border-radius: 0.6rem;
+    border: 1px solid var(--color--dark);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 1.3rem 1.4rem 0.9rem 1.7rem;
+    text-align: left;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color--dark);
+
+      & + div {
+        .form-select__content {
+          outline: none;
+          border-color: var(--color--dark);
+        }
+      }
+    }
+
+    &--placeholder {
+      color: var(--gray--400);
+    }
+
+    &__icon {
+      transform: rotate(-90deg);
+
+      path {
+        fill: var(--color--dark);
+      }
+    }
+  }
+
+  &__content {
+    z-index: 4;
+    overflow: hidden;
+    font-size: 1.8rem;
+    font-weight: 400;
+    background-color: var(--color--light);
+    box-shadow: 0 3.5rem 4rem rgb(0 0 0 / 8%);
+    border: 1px solid rgb(0 0 0 / 10%);
+    border-radius: 0.8rem;
+    width: 100%;
+    padding: 0.8rem 2.8rem;
+
+    @include media-breakpoint-down(lg) {
+      max-width: calc(100vw - 3rem);
+    }
+  }
+
+  &__item {
+    padding: 1rem 0;
+    transition: var(--color--fast);
+    cursor: pointer;
+    user-select: none;
+
+    &[data-disabled] {
+      font-size: 1.6rem;
+      color: var(--gray--400);
+      cursor: default;
+    }
+
+    &[data-state="checked"]:not([data-disabled]),
+    &:hover:not([data-disabled]),
+    &:focus {
+      outline: none;
+      color: var(--color--brand-a);
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #dfdfdf;
+    }
+  }
+}

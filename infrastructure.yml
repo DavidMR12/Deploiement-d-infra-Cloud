@@ -1,0 +1,10 @@
+---
+- name: My_Playbook
+  hosts: all
+  become: true
+  roles:
+    #- { role: docker-swarm }
+    # - { role: docker-registry }
+    # - { role: traefik, when: "'manager' in inventory_hostname" }
+    - { role: elk, when: "'worker2' in inventory_hostname" }
+    

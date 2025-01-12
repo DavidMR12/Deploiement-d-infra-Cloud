@@ -1,0 +1,32 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.app-form {
+  &__error {
+    display: block;
+    font-weight: normal;
+    font-size: 1.5rem;
+    color: var(--color--brand-b);
+    margin-top: 0.4rem;
+
+    @include media-breakpoint-down(lg) {
+      font-size: var(--font-size--sm);
+    }
+  }
+}
+
+.form-error {
+  textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="number"],
+  .form-select__trigger,
+  [class*="phone-input-wrap"] {
+    border-color: var(--color--brand-b);
+
+    &:focus {
+      border-color: var(--color--brand-b--dark);
+    }
+  }
+}

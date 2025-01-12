@@ -1,0 +1,134 @@
+@use "../common/breakpoints" as *;
+
+// Variables
+/* stylelint-disable declaration-colon-space-after, custom-property-empty-line-before */
+
+:root {
+  // Font
+  --font-size--xl: 2rem;
+  --font-size--lg: 1.8rem;
+  --font-size--md: 1.6rem;
+  --font-size--sm: 1.4rem;
+  --font-size--xs: 1.2rem;
+  --font-size--h1: 5rem;
+  --font-size--h2: 4.4rem;
+  --font-size--h3: 2.6rem;
+  --font-size--h4: 2.2rem;
+  --font-size--h5: 2rem;
+  --font-size--h6: 1.8rem;
+  --font-family--primary: "Uniform", helvetica, arial, sans-serif; // Weights & styles: 400, 500, 700
+  --font-weight--default: 400;
+
+  @include media-breakpoint-down(lg) {
+    --font-size--lg: 1.6rem;
+    --font-size--md: 1.4rem;
+    --font-size--sm: 1.3rem;
+    --font-size--h1: 3.2rem;
+    --font-size--h2: 2.8rem;
+    --font-size--h3: 2.2rem;
+    --font-size--h4: 2rem;
+    --font-size--h5: 1.8rem;
+  }
+
+  // Colors
+  --blue--color: 205 100%;
+  --blue--lightness: 33%;
+
+  --red--color: 351 81%;
+  --red--lightness: 48%;
+
+  --yellow--color: 57 100%;
+  --yellow--lightness: 47%;
+
+  --green--color: 155 80%;
+  --green--lightness: 33%;
+
+  --color--brand-a: hsl(var(--green--color) var(--green--lightness));
+  --color--brand-a--dark: hsl(var(--blue--color) calc(var(--blue--lightness) - 4%));
+  --color--brand-a--light: hsl(var(--blue--color) calc(var(--blue--lightness) + 62%));
+  --color--brand-b: hsl(var(--red--color) var(--red--lightness));
+  --color--brand-b--dark: hsl(var(--red--color) calc(var(--red--lightness) - 8%));
+  --color--brand-b--light: hsl(var(--red--color) calc(var(--red--lightness) + 45%));
+  --color--accent: hsl(var(--yellow--color) var(--yellow--lightness));
+  --color--accent--dark: hsl(var(--yellow--color) calc(var(--yellow--lightness) - 5%));
+  --color--success: hsl(var(--green--color) var(--green--lightness));
+  --color--success--dark: hsl(var(--green--color) calc(var(--green--lightness) - 6%));
+  --color--success--light: hsl(var(--green--color) calc(var(--green--lightness) + 62%));
+  --gray--200: #f9f9f9;
+  --gray--300: #f1f1f1;
+  --gray--500: #dbdbdb;
+  --gray--700: #575756;
+  --gray--900: #00070c;
+  --color--light: #fff;
+  --color--light-blue: #e1e2ff;
+  --color--dark: var(--gray--900);
+  --color--body: var(--gray--700);
+  --color--border: #d9d9d9;
+
+  --box-shadow: 0 0.5rem 3.5rem rgb(0 0 0 / 5%);
+
+  // Spacing
+  --spacer--primary: 11vh;
+  --padding--body: 3rem;
+  --grid--gap: 5rem;
+
+  @include media-breakpoint-down(lg) {
+    --spacer--primary: 5.8rem;
+    --padding--body: 2rem;
+  }
+
+  // Sizing
+  --container--width: 120.5rem;
+  --page-content--width: 96.2rem;
+  --brand--width: 19rem;
+  --header--height: 7.4rem;
+  --cta-bar--height: 9.8rem; // 13.8rem with legal footer
+  --modal--max-height: 85vh;
+  --store-locator--width: 130.7rem;
+
+  @include media-breakpoint-down(lg) {
+    --brand--width: 17rem;
+    --header--height: 5.8rem;
+    --cta-bar--height: 7.3rem; // 11.3rem with legal footer
+  }
+
+  @include media-breakpoint-down(sm) {
+    --cta-bar--height: 12.7rem; // 16.7rem with legal footer
+  }
+
+  // Transition - Timings
+  --duration--fast: 0.1s;
+  --duration--average: 0.25s;
+  --duration--slow: 0.6s;
+
+  // Transition - Easings
+  --easing--primary: cubic-bezier(0.22, 0.61, 0.36, 1); // Out Cubic
+  --easing--secondary: cubic-bezier(0.87, 0, 0.13, 1);
+
+  // Transition - Names
+  --opacity--fast: opacity var(--duration--fast) var(--easing--primary);
+  --opacity--average: opacity var(--duration--average) var(--easing--primary);
+  --opacity--slow: opacity var(--duration--slow) var(--easing--primary);
+
+  --color--fast: color var(--duration--fast) var(--easing--primary);
+  --color--average: color var(--duration--average) var(--easing--primary);
+
+  --border-color--fast: border-color var(--duration--fast) var(--easing--primary);
+  --border-color--average: border-color var(--duration--average) var(--easing--primary);
+
+  --background-color--fast: background-color var(--duration--fast) var(--easing--primary);
+  --background-color--average: background-color var(--duration--average) var(--easing--primary);
+
+  --box-shadow--fast: box-shadow var(--duration--fast) var(--easing--primary);
+  --box-shadow--average: box-shadow var(--duration--average) var(--easing--primary);
+
+  --width--fast: width var(--duration--fast) var(--easing--primary);
+  --width--average: width var(--duration--average) var(--easing--primary);
+
+  --fill--fast: fill var(--duration--fast) var(--easing--primary);
+  --fill--average: fill var(--duration--average) var(--easing--primary);
+
+  --transform--fast: transform var(--duration--fast) var(--easing--primary);
+  --transform--average: transform var(--duration--average) var(--easing--primary);
+  --transform--slow: transform var(--duration--slow) var(--easing--primary);
+}

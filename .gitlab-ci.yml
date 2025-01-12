@@ -1,0 +1,93 @@
+stages:
+  - build
+  - linter
+  - unit-tests
+  - deploy-preprod
+  - func-tests-preprod
+  - deploy-prod
+  - func-tests-prod
+  - switch_prod
+
+build-job:
+  stage: build
+  image: docker:24.0.5
+  script: |
+   cd Projet/clo5-backend-master
+   docker build -t image_back .
+   docker tag image_back:latest registry.quantum.motors:5000/root/quantum-motors:v2
+   docker push registry.quantum.motors:5000/root/quantum-motors:v2
+   cd ..
+   cd Projet/clo5-front-main
+   docker build -t image_front .
+   docker tag image_front:latest registry.quantum.motors:5000/root/quantum-motors:v2
+   docker push registry.quantum.motors:5000/root/quantum-motors:v2
+
+linter-job:
+  image: node:latest
+  stage: linter
+  script: |
+    cd Projet/clo5-backend-master
+    yarn lint
+    cd Projet/clo5-front-main
+    yarn lint
+
+unit-tests-job:
+  image: node:latest
+  stage: unit-tests
+  extends:
+    - build-job
+  script: |
+   cd Projet/clo5-backend-master
+   yarn test:unit
+   cd Projet/clo5-front-main
+   yarn test:unit
+
+deploy-preprod-job:
+  image: node:latest
+  stage: deploy-preprod
+  extends:
+    - unit-tests-job
+  script: |
+   apt-get update -y && apt-get install -y rsync openssh-client
+   rsync -avz --exclude=node_modules/ Projet makoss_d@worker1:/home/makoss_d/pre-prod
+   rsync -avz --exclude=node_modules/ Projet makoss_d@worker2:/home/makoss_d/pre-prod
+
+func-tests-preprod-job:
+  stage: func-tests-preprod
+  image: docker:24.0.5
+  extends:
+    - deploy-preprod-job
+  script: |
+   cd Projet/clo5-backend-master
+   docker run -v $(pwd):/app -w /app -t postman/newman:latest run "Quantum Motors Catalog.postman_collection.json"
+   cd ..
+   docker-compose up
+
+deploy-prod-job:
+  image: node:latest
+  stage: deploy-prod
+  extends:
+    - func-tests-preprod-job
+  script: |
+   apt-get update -y && apt-get install -y rsync openssh-client
+   rsync -avz --exclude=node_modules/ Projet makoss_d@worker1:/home/makoss_d/prod
+   rsync -avz --exclude=node_modules/ Projet makoss_d@worker2:/home/makoss_d/prod
+
+func-tests-prod-job:
+  stage: func-tests-prod
+  image: docker:24.0.5
+  extends:
+    - deploy-prod-job
+  script: |
+   cd Projet/clo5-backend-master
+   docker run -v $(pwd):/app -w /app -t postman/newman:latest run "Quantum Motors Catalog.postman_collection.json"
+   cd ..
+   docker-compose up
+   
+# switch_prod:
+#   stage: switch_prod
+#   extends:
+#     - func-tests-prod-job
+#   script: |
+#    ssh makoss_d@serveur_prod "docker stop production_blue"
+#    ssh makoss_d@serveur_prod "docker start production_green"

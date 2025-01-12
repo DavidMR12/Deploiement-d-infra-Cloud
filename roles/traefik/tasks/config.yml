@@ -1,0 +1,27 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/community/docker/docker_swarm_service_module.html
+
+- name: Create folder for traefik.toml conf
+  file:
+    path: "/etc/traefik"
+    state: directory
+
+- name: Install dependancies to manage packages
+  apt:
+    name:
+      - python3-docker
+    update_cache: yes
+  when: "'managers' in group_names"
+
+- name: Create traefik
+  docker_swarm_service:
+    name: traefik
+    image: "registry.quantum.motors:5000/traefik:v1"
+    state: present
+    mounts:
+      - source: /etc/traefik
+        target: /etc/traefik
+        type: bind
+    placement:
+      constraints:
+        - node.role == manager

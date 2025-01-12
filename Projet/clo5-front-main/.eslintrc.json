@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:react/recommended",
+    "next/core-web-vitals",
+    "google",
+    "prettier"
+  ],
+  "rules": {
+    "require-jsdoc": 0,
+    "no-unused-vars": 0,
+    "camelcase": 0
+  }
+}

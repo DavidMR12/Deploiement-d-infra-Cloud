@@ -1,0 +1,35 @@
+---
+# Documentations
+# https://docs.gitlab.com/runner/install/linux-repository.html
+# https://gitlab.com/k33g_org/k33g_org.gitlab.io/-/issues/84
+# https://adfinis.com/fr/blog/gitlab-ci/
+# https://www.bejean.eu/2021/02/14/mettre-en-place-un-gitlab-runner
+# https://docs.ansible.com/ansible/2.9/modules/gitlab_runner_module.html#gitlab-runner-module
+
+- name: include vault
+  ansible.builtin.include_vars:
+    file: token.yml
+
+- name: Register runner for `/etc/gitlab-runner/config.toml` file on worker1
+  ansible.builtin.command: |
+    sudo gitlab-runner register \
+    --non-interactive \
+    --url "http://172.16.237.26:8088" \
+    --token "{{token_runner1}}" \
+    --executor "docker" \
+    --docker-image docker:24.0.5 \
+    --description "docker-runner1" \
+    --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+  when: "'worker1' in inventory_hostname"
+
+- name: Register runner for `/etc/gitlab-runner/config.toml` file on worker2
+  ansible.builtin.command: |
+    sudo gitlab-runner register \
+    --non-interactive \
+    --url "http://172.16.237.26:8088" \
+    --token "{{token_runner2}}" \
+    --executor "docker" \
+    --docker-image docker:24.0.5 \
+    --description "docker-runner2" \
+    --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+  when: "'worker2' in inventory_hostname"

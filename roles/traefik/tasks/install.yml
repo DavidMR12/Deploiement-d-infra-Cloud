@@ -1,0 +1,20 @@
+---
+#https://docs.ansible.com/ansible/latest/collections/community/docker/docker_image_module.html
+
+- name: Pull docker images from Docker Hub
+  docker_image:
+    name: traefik
+    tag: v2.11
+    source: pull
+
+- name: Push docker images to registry
+  docker_image:
+    name: "traefik:v2.11"
+    repository: "registry.quantum.motors:5000/traefik:v1"
+    push: yes
+    source: local
+
+- name: Remove Docker Hub images from host
+  docker_image:
+    state: absent
+    name: "traefik:v2.11"

@@ -1,0 +1,122 @@
+@use "../common/breakpoints" as *;
+
+@font-face {
+  font-family: Uniform;
+  src: url("../../../public/fonts/Uniform.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Uniform;
+  src: url("../../../public/fonts/Uniform-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Uniform;
+  src: url("../../../public/fonts/Uniform-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--color--dark);
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-family--primary);
+
+  @include media-breakpoint-down(lg) {
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h1,
+.h1 {
+  font-size: var(--font-size--h1);
+  line-height: 1.08;
+}
+
+h2,
+.h2 {
+  font-size: var(--font-size--h2);
+  font-weight: 500;
+  line-height: 1.27;
+}
+
+h3,
+.h3 {
+  font-size: var(--font-size--h3);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+h4,
+.h4 {
+  font-size: var(--font-size--h4);
+  font-weight: 500;
+  line-height: 1.18;
+}
+
+h5,
+.h5 {
+  font-size: var(--font-size--h5);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+h6,
+.h6 {
+  font-size: var(--font-size--h6);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+p {
+  margin: 2rem 0;
+
+  @include media-breakpoint-down(lg) {
+    margin: 1.5rem 0;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  & + ul,
+  & + ol {
+    margin: 4rem 0;
+  }
+}
+
+a {
+  color: var(--color--brand-a);
+
+  &:hover {
+    color: var(--color--brand-a);
+  }
+}

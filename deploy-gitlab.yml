@@ -1,0 +1,11 @@
+- name: Deploy GitLab on worker
+  hosts: manager
+  become: true
+  roles:
+    - gitlab
+
+# - name: Deploy gitLab-runner on manager
+#   hosts: workers
+#   become: true
+#   roles:
+#     - gitlab-runner

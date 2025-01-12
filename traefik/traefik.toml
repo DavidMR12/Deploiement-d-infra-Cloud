@@ -1,0 +1,33 @@
+# Activer le dashboard et le sécuriser avec un nom d'utilisateur et un mot de passe
+[api]
+  insecure = true
+  dashboard = true
+  [api.auth]
+    [api.auth.basic]
+      users = ["admin:passwordhashed"]
+
+# Activer le provider Docker pour détecter les services
+[providers.docker]
+  exposedByDefault = false
+
+# Configuration des entry points HTTP
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+# Définition des loggers
+[log]
+  level = "INFO"
+
+# Configuration de l'accès aux logs
+[accessLog]
+
+# Activer les serveurs de fichiers pour l'accès aux fichiers de configuration dynamique
+[file]
+
+# Configuration du service de résolution DNS pour les services Docker
+[dns]
+  [dns.resolvers]
+    [dns.resolvers.myresolver]
+      [dns.resolvers.myresolver.docker]
+        endpoint = "unix:///var/run/docker.sock"

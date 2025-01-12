@@ -1,0 +1,18 @@
+.info-banner {
+  padding: 1.5rem 3rem;
+  border-left: 5px solid var(--color--brand-a);
+  background-color: var(--color--light);
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  border-radius: 0 0.7rem 0.7rem 0;
+
+  &__title {
+    color: var(--color--brand-a);
+    margin-bottom: 0.4rem;
+
+    & + p {
+      margin-top: 0.4rem;
+    }
+  }
+}

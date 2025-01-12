@@ -1,0 +1,59 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+// Global
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-size: var(--font-size--md);
+  font-weight: var(--font-weight--default);
+  font-family: var(--font-family--primary);
+  color: var(--color--body);
+  background-color: var(--color--light);
+  line-height: 1.5;
+
+  &[data-scroll-locked="true"] {
+    overflow: hidden;
+  }
+}
+
+::selection {
+  background-color: var(--color--brand-a);
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote,
+figure {
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
+
+ol,
+ul {
+  padding-left: 1.5rem;
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+}
+
+p {
+  max-width: 88.7rem;
+}

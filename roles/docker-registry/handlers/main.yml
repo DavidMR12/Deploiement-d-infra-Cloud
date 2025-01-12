@@ -1,0 +1,11 @@
+---
+# handlers file for docker-registry
+- name: Restart Docker
+  systemd:
+    name: docker
+    state: restarted
+
+- name: Reload Firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

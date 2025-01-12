@@ -1,0 +1,19 @@
+docker run -it registry:latest sh : ouvrir la registry
+
+ sudo gitlab-rake gitlab:env:info : Connaitre la version de gitlab
+
+docker run -it image_back sh : run le conteneur back
+
+docker run -it image_front sh : run le conteneur front
+
+//Commnades pour associer la registry à gitlab
+
+docker login registry.quantum.motors
+
+docker pull alpine:latest
+
+ docker tag alpine:latest registry.quantum.motors:5000/root/quantum-motors:v2
+
+ docker push registry.quantum.motors:5000/root/quantum-motors:v2
+
+ansible-playbook --vault-password-file roles/gitlab/tasks/passwords.yml deploy-gitlab.yml 

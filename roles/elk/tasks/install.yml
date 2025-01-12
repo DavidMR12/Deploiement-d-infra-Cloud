@@ -1,0 +1,112 @@
+---
+# https://goopensource.fr/deploiement-de-la-stack-elk-elasticsearch-logstash-kibana-sur-debian/
+# https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elastic-stack-on-ubuntu-20-04-fr
+
+# Installation de ElasticSearch
+
+- name: Import GPG key for Elasticsearch
+  shell: wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+  become: true
+
+- name: Add Elasticsearch APT repository
+  shell: echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+  become: true
+
+- name: Update APT package index and Install Elasticsearch
+  apt:
+    update_cache: true
+    name: 
+     - elasticsearch
+  environment:
+   URL: http://172.16.237.124:9200/
+  
+- name: Start Elasticsearch service
+  systemd:
+    name: elasticsearch
+    state: started
+  become: true
+
+- name: Enable Elasticsearch service on boot
+  systemd:
+    name: elasticsearch
+    enabled: true
+  become: true
+
+# Installation de Kibana
+
+- name: Update APT package index and Install Kibana
+  apt:
+    update_cache: true
+    name: 
+     - kibana
+  environment:
+   URL: http://172.16.237.124:5601/
+
+- name: Start Kibana service
+  systemd:
+    name: kibana
+    state: started
+  become: true
+
+- name: Enable Kibana service on boot
+  systemd:
+    name: kibana
+    enabled: true
+  become: true
+
+# Installation de LogStash
+
+- name: Install default Java Runtime Environment (JRE)
+  apt:
+    name: default-jre
+    state: present
+  become: true
+
+- name: Update APT package index and Install LogStash
+  apt:
+    update_cache: true
+    name: 
+     - logstash
+
+- name: Start Logstash service
+  systemd:
+    name: logstash
+    state: started
+  become: true
+
+- name: Enable Logstash service on boot
+  systemd:
+    name: logstash
+    enabled: true
+  become: true
+
+- name: Install Filebeat
+  apt:
+    name: filebeat
+    state: present
+  become: true
+
+- name: Enable Filebeat system module
+  command: filebeat modules enable system
+  become: true
+
+- name: Setup Filebeat pipelines and system module
+  command: filebeat setup --pipelines --modules system
+  become: true
+
+- name: Setup Filebeat for index management with Elasticsearch
+  command: filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
+  become: true
+
+- name: Setup Filebeat for Kibana
+  command: filebeat setup -E output.logstash.enabled=false -E output.elasticsearch.hosts=['localhost:9200'] -E setup.kibana.host=localhost:5601
+  become: true
+
+- name: Start Filebeat service
+  service:
+    name: filebeat
+    state: started
+    enabled: yes
+  become: true
+
+

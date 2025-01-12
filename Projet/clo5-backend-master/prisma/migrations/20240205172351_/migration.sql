@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Color` MODIFY `hexa` VARCHAR(191) NOT NULL DEFAULT '000000';

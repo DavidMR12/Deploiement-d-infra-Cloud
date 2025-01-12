@@ -1,0 +1,98 @@
+// Helpers: Fonts
+.text {
+  // Alignments
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  // Transforms
+  &--upercase {
+    text-transform: uppercase;
+  }
+
+  // Sizes
+  &--xs {
+    font-size: var(--font-size--xs);
+  }
+
+  &--sm {
+    font-size: var(--font-size--sm);
+  }
+
+  &--lg {
+    font-size: var(--font-size--lg);
+  }
+
+  &--xl {
+    font-size: var(--font-size--xl);
+  }
+
+  // Family
+  &--primary {
+    font-family: var(--font-family--primary);
+  }
+
+  // Colors
+  &--light {
+    color: var(--color--light) !important;
+
+    a {
+      color: var(--color--light);
+    }
+  }
+
+  &--dark {
+    color: var(--color--dark) !important;
+
+    a {
+      color: var(--color--dark);
+    }
+  }
+
+  &--accent {
+    color: var(--color--accent) !important;
+
+    a {
+      color: var(--color--accent);
+    }
+  }
+
+  &--brand {
+    color: var(--color--brand-a) !important;
+
+    a {
+      color: var(--color--brand-a);
+    }
+  }
+
+  &--danger {
+    color: var(--color--brand-b) !important;
+
+    &:is(button) {
+      &:hover {
+        color: var(--color--dark) !important;
+      }
+    }
+
+    a {
+      color: var(--color--brand-b);
+    }
+  }
+
+  // Weights
+  &--default {
+    font-weight: var(--font-weight--default);
+  }
+
+  &--bold {
+    font-weight: 700;
+  }
+
+  &--no-wrap {
+    white-space: nowrap;
+  }
+}

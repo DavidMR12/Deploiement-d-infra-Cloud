@@ -1,0 +1,116 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.slider-models {
+  padding: 0 var(--padding--body) 2.4rem;
+  margin: calc(var(--home-slider-overlap) * -1) 0 0;
+  overflow: visible;
+
+  &__card {
+    background-color: var(--color--light);
+    border: 1px solid var(--color--light);
+    border-radius: 0.7rem;
+    width: clamp(26rem, 20vw, 30rem);
+    box-shadow: 0 1.4rem 3.5rem rgb(0 0 0 / 5%);
+    padding: 2rem;
+    font-size: var(--font-size--sm);
+    display: flex;
+    flex-direction: column;
+    transition: var(--box-shadow--average), var(--border-color--average);
+    height: auto;
+    cursor: pointer;
+
+    &[data-is-selected="true"] {
+      box-shadow: 0 1.4rem 3.5rem rgb(0 0 0 / 15%);
+      border-color: var(--gray--500);
+    }
+
+    &__header {
+      position: relative;
+      margin-top: -9rem;
+      min-height: 8.5rem;
+      pointer-events: none;
+
+      @include media-breakpoint-down(lg) {
+        margin-top: -8rem;
+      }
+    }
+
+    &__image {
+      min-height: 15rem;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__brand {
+      position: absolute;
+      width: 4rem;
+      height: 2.5rem;
+      z-index: 1;
+      left: 0;
+      bottom: 0;
+
+      img {
+        object-fit: contain;
+        width: auto; // Fix image warning
+        height: auto; // Fix image warning
+      }
+    }
+
+    &__title {
+      margin: 0.8rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__description,
+    &__baseline {
+      margin: 0.4rem 0;
+    }
+
+    &__baseline {
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    &__button {
+      margin-top: auto;
+    }
+  }
+
+  [class*="swiper-button-prev"],
+  [class*="swiper-button-next"] {
+    background-color: var(--color--light);
+    border-radius: 100vmax;
+    width: 35px;
+    height: 35px;
+    top: -35px;
+    box-shadow: 0 7px 15px -5px rgb(0 0 0 / 25%);
+
+    &::after {
+      content: url("/images/icon-arrow.svg");
+      font-size: 0;
+    }
+  }
+
+  [class*="swiper-button-prev"] {
+    padding-right: 0.3rem;
+    left: auto;
+    right: 55px;
+
+    &::after {
+      transform: scale(0.8);
+    }
+  }
+
+  [class*="swiper-button-next"] {
+    padding-left: 0.3rem;
+
+    &::after {
+      transform: rotate(180deg) scale(0.8);
+    }
+  }
+}

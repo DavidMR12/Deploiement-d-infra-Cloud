@@ -1,0 +1,47 @@
+---
+# https://docs.gitlab.com/ee/administration/restart_gitlab.html
+# https://docs.gitlab.com/omnibus/settings/configuration.html
+- name: Install GitLab dependencies
+  apt:
+    name:
+      - curl
+      - openssh-server
+      - ca-certificates
+      - postfix
+    state: present
+
+- name: Install GnuPG and pip.
+  apt:
+    name:
+      - gnupg2
+      - python3-pip
+      - python3-gitlab
+      - openssl
+    state: present
+
+- name: Download GitLab repository installation script
+  get_url:
+    url: "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
+    dest: /tmp/gitlab_install_repository.sh
+    validate_certs: true
+  when: "'manager' in inventory_hostname"
+  
+- name: Install GitLab repository
+  command: bash /tmp/gitlab_install_repository.sh
+  register: output
+  when: "'manager' in inventory_hostname"
+
+- name: Install GitLab
+  apt:
+    update_cache: true
+    name:
+      - gitlab-ce
+  environment:
+    GITLAB_DEB_PACKAGE_VERSION: "{{ lookup('env', 'GITLAB_DEB_PACKAGE_VERSION') | default('latest') }}"
+    EXTERNAL_URL: "http://172.16.237.26:8088"
+    REGISTRY_EXTERNAL_URL: "https://registry.quantum.motors" 
+  when: "'manager' in inventory_hostname"
+
+# - name: Reconfiguration of gitlab.rb
+#   command: sudo gitlab-ctl reconfigure
+#   when: "'manager' in inventory_hostname"

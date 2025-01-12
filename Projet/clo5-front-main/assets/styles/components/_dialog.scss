@@ -1,0 +1,84 @@
+@use "../../../assets/styles/helpers/miscellaneous" as *;
+
+.dialog {
+  &:focus {
+    outline: none;
+  }
+
+  &__title {
+    margin-top: 0;
+  }
+
+  &__success {
+    margin: 1rem auto;
+    max-width: 42rem;
+    width: 100%;
+
+    &__icon {
+      margin: 2rem auto;
+    }
+
+    [class*="btn"] {
+      margin-top: 1.5rem;
+    }
+
+    p {
+      &:first-of-type {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &__content {
+    background-color: white;
+    border-radius: 0.5rem;
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 60rem;
+    max-height: var(--modal--max-height);
+    padding: var(--padding--body);
+    overflow-y: auto;
+
+    &[data-state="open"] {
+      animation: content-show var(--duration--average) var(--easing--secondary);
+    }
+
+    &[data-state="closed"] {
+      animation: content-hide var(--duration--average) var(--easing--secondary);
+    }
+  }
+
+  &__overlay {
+    background-color: rgb(0 0 0 / 32%);
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &[data-state="open"] {
+      animation: overlay-show var(--duration--average) var(--easing--secondary);
+    }
+
+    &[data-state="closed"] {
+      animation: overlay-hide var(--duration--average) var(--easing--secondary);
+    }
+  }
+
+  &__close {
+    @extend %btn-unstyled;
+
+    position: absolute;
+    right: 0;
+    top: 0.4rem;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: grid;
+    place-items: center;
+  }
+}

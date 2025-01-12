@@ -1,0 +1,6 @@
+---
+# tasks file for docker-registry
+
+- include_tasks: install.yml
+
+- include_tasks: config.yml

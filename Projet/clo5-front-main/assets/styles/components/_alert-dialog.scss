@@ -1,0 +1,138 @@
+@use "../../../assets/styles/helpers/miscellaneous" as *;
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.alert-dialog {
+  &__trigger {
+    @extend %btn-unstyled;
+
+    color: var(--color--brand-a);
+    font-size: var(--font-size--md);
+    font-weight: 500;
+  }
+
+  &__form {
+    text-align: left;
+    background-color: var(--gray--200);
+    border-radius: 0.8rem;
+    padding: 2rem;
+    margin-bottom: 2.4rem;
+  }
+
+  &__overlay {
+    background-color: rgb(0 0 0 / 32%);
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &[data-state="open"] {
+      animation: overlay-show var(--duration--average) var(--easing--secondary);
+    }
+
+    &[data-state="closed"] {
+      animation: overlay-hide var(--duration--average) var(--easing--secondary);
+    }
+  }
+
+  &__content {
+    text-align: center;
+    background-color: white;
+    border-radius: 6px;
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 52rem;
+    max-height: var(--modal--max-height);
+    padding: var(--padding--body);
+
+    &[data-state="open"] {
+      animation: content-show var(--duration--average) var(--easing--secondary);
+    }
+
+    &[data-state="closed"] {
+      animation: content-hide var(--duration--average) var(--easing--secondary);
+    }
+
+    [class*="btn-list"] {
+      justify-content: center;
+
+      [class*="btn--brand"] {
+        @include media-breakpoint-down(sm) {
+          order: -1;
+        }
+      }
+    }
+
+    p {
+      max-width: 38.2rem;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__footer {
+    margin-top: 2rem;
+  }
+
+  &__close {
+    @extend %btn-unstyled;
+
+    position: absolute;
+    right: 0;
+    top: 0.4rem;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: grid;
+    place-items: center;
+  }
+}
+
+@keyframes overlay-show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-hide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes content-show {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes content-hide {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+}

@@ -1,0 +1,84 @@
+@use "../../../assets/styles/helpers/miscellaneous" as *;
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.app-tabs {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 364px;
+    height: 364px;
+    background-color: currentcolor;
+    border-radius: 100vmax;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: var(--transform--average), var(--opacity--average);
+
+    @include media-breakpoint-down(lg) {
+      width: min(36rem, 60vw);
+      height: min(36rem, 60vw);
+      left: -5vw;
+    }
+  }
+
+  &[data-isolated-image="true"] {
+    &::before {
+      transform: scale(1);
+      opacity: 0.1;
+    }
+  }
+
+  &__tab-list {
+    display: flex;
+    align-items: center;
+    gap: 3.8rem;
+    width: var(--slider-width);
+    margin-bottom: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include media-breakpoint-down(xl) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__trigger {
+    @extend %btn-unstyled;
+
+    padding: 0 0 1rem;
+    font-size: var(--font-size--sm);
+    text-transform: uppercase;
+    position: relative;
+    transition: var(--color--fast);
+
+    &:hover {
+      color: currentcolor;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: currentcolor;
+      transform: translateY(1rem);
+      opacity: 0;
+      transition: var(--transform--average), var(--opacity--fast);
+    }
+
+    &[data-state="active"] {
+      font-weight: 500;
+      color: currentcolor;
+
+      &::after {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+}

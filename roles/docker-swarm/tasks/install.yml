@@ -1,0 +1,39 @@
+---
+#https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-20-04
+#https://docs.docker.com/engine/install/ubuntu/
+
+- name: Install dependancies for APT repository
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+
+- name: Add Docker GPG key for APT
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+    state: present
+    update_cache: true
+
+- name: Install Docker Engine
+  apt:
+    update_cache: true
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
+      - containerd.io
+
+- name: Add the user makoss_d to the docker group to add privilges
+  ansible.builtin.user:
+    name: makoss_d
+    groups: docker
+    append: yes

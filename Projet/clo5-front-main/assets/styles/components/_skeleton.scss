@@ -1,0 +1,43 @@
+@use "sass:math";
+@use "../../../assets/styles/common/breakpoints" as *;
+
+body {
+  .skeleton {
+    &__title {
+      font-size: 2rem;
+      margin-top: 3rem;
+    }
+
+    &__img {
+      width: 100%;
+      height: 11rem;
+      margin-top: 1.5rem;
+      border-radius: 0.5rem;
+    }
+
+    &__circle-wrap {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      & > * {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+
+    &__circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 100vmax;
+    }
+
+    &__line {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          width: 15 + math.floor(math.random() * ((34 - 15) + 1)) + rem; // $min + floor($rand * (($max - $min) + 1))
+          max-width: 90%;
+        }
+      }
+    }
+  }
+}

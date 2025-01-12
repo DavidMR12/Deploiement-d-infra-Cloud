@@ -1,0 +1,6 @@
+---
+# tasks file for traefik
+
+- include_tasks: install.yml
+
+- include_tasks: config.yml

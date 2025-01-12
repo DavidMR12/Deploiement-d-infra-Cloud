@@ -1,0 +1,67 @@
+.gm-style {
+  font-family: var(--font-family--primary);
+
+  .gm-style-iw-c {
+    box-shadow: var(--box-shadow);
+    top: -40px;
+    padding: 1.5rem 1.2rem 1.2rem;
+  }
+
+  .gm-style-iw-tc {
+    top: -40px;
+    filter: drop-shadow(0 4px 2px rgb(0 0 0 / 5%));
+  }
+
+  .gm-ui-hover-effect {
+    top: -2px !important;
+    right: -3px !important;
+  }
+
+  img[src="/images/map/m1.png"],
+  img[src="/images/map/m2.png"] {
+    top: 0.5rem !important;
+  }
+
+  img[src="/images/map/m3.png"],
+  img[src="/images/map/m4.png"],
+  img[src="/images/map/m5.png"] {
+    top: 0.6rem !important;
+  }
+
+  img[src="/images/map/marker.svg"],
+  img[src="/images/map/user.svg"] {
+    left: 50% !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: translateX(-50%);
+  }
+
+  img[src="/images/map/marker.svg"] {
+    width: 2.8rem !important;
+    height: 3.5rem !important;
+  }
+
+  img[src="/images/map/user.svg"] {
+    width: 4.4rem !important;
+    height: auto !important;
+  }
+}
+
+.cluster-marker {
+  color: #fff;
+  background: #1978c8;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agence-marker {
+  background: none;
+  border: none;
+
+  img {
+    width: 25px;
+  }
+}

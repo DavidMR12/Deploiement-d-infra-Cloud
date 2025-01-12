@@ -1,0 +1,938 @@
+{
+	"info": {
+		"_postman_id": "ebe7fd71-fecf-4b65-b6a1-cd687bc94391",
+		"name": "Quantum Motors Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1020412"
+	},
+	"item": [
+		{
+			"name": "Model",
+			"item": [
+				{
+					"name": "Model : CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Quantum Electron\",\n    \"description\": \"Batterie haute capacité, autonomie étendue, recharge rapide, intérieur élégant avec des fonctionnalités de pointe\",\n    \"price\": 50000.99,\n    \"type\": \"suv\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/model",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"model"
+							]
+						},
+						"description": "Create a model"
+					},
+					"response": []
+				},
+				{
+					"name": "Model : GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/model/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"model",
+								"1"
+							]
+						},
+						"description": "Get a specific car model"
+					},
+					"response": []
+				},
+				{
+					"name": "Model : GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/models",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"models"
+							]
+						},
+						"description": "Get available car models"
+					},
+					"response": []
+				},
+				{
+					"name": "Model : UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Quantum Electron Updated\",\n    \"description\": \"Batterie haute capacité, autonomie étendue, recharge rapide, intérieur élégant avec des fonctionnalités de pointe\",\n    \"price\": 51000.99,\n    \"type\": \"suv\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/model/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"model",
+								"1"
+							]
+						},
+						"description": "Update a specific car model"
+					},
+					"response": []
+				},
+				{
+					"name": "Model : DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/model/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"model",
+								"1"
+							]
+						},
+						"description": "Delete a specific car model"
+					},
+					"response": []
+				}
+			],
+			"description": "Car models management",
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "P@ssw0rd!",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Finish",
+			"item": [
+				{
+					"name": "Finish : CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sline\",\n    \"description\": \"L'élégance en avant\",\n    \"price\": 2000.99,\n    \"models\": [1]\n\n   \n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/finish",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"finish"
+							]
+						},
+						"description": "Create a finish"
+					},
+					"response": []
+				},
+				{
+					"name": "Finish : GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/finishes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"finishes"
+							]
+						},
+						"description": "Get all finishes"
+					},
+					"response": []
+				},
+				{
+					"name": "Finish : GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/finish/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"finish",
+								"8"
+							]
+						},
+						"description": "Get a specific finish by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Finish : UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sline Plus\",\n    \"description\": \"Une nouvelle finition\",\n    \"price\": 3000.99,\n    \"models\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/finish/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"finish",
+								"8"
+							]
+						},
+						"description": "Update a specific finish by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Finish : DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/finish/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"finish",
+								"8"
+							]
+						},
+						"description": "Delete a specific finish by ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Car finishes management"
+		},
+		{
+			"name": "Battery",
+			"item": [
+				{
+					"name": "Battery : CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Autonomie Standard associé au moteur électrique VZ\",\n    \"description\": \"Batterie 4,14 kWh\",\n    \"power\": 300,\n    \"capacity\": 50,\n    \"price\": 3199,\n    \"finishes\": [1]\n\n   \n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/battery",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"battery"
+							]
+						},
+						"description": "Create a battery"
+					},
+					"response": []
+				},
+				{
+					"name": "Battery : GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/batteries",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batteries"
+							]
+						},
+						"description": "Get all baterries"
+					},
+					"response": []
+				},
+				{
+					"name": "Battery : GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/battery/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"battery",
+								"1"
+							]
+						},
+						"description": "Get a specific battery"
+					},
+					"response": []
+				},
+				{
+					"name": "Battery : UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Batterie mise à jour\",\n    \"description\": \"D haute capacité,\",\n    \"price\": 6999.99,\n    \"power\": 300,\n    \"capacity\": 70,\n    \"finishes\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/battery/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"battery",
+								"1"
+							]
+						},
+						"description": "update a specific battery"
+					},
+					"response": []
+				},
+				{
+					"name": "Battery : DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/battery/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"battery",
+								"1"
+							]
+						},
+						"description": "Delete a battery"
+					},
+					"response": []
+				}
+			],
+			"description": "Batteries car management"
+		},
+		{
+			"name": "Color",
+			"item": [
+				{
+					"name": "Color : CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Rouge intense\",\n    \"description\": \"Rouge intense avec élégance\",\n    \"code\": \"REI\",\n    \"hexa\": \"000000\",\n    \"price\": 200.99,\n    \"finishes\": [1]\n\n   \n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/color",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color"
+							]
+						},
+						"description": "Create a color"
+					},
+					"response": []
+				},
+				{
+					"name": "Color : GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/colors",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"colors"
+							]
+						},
+						"description": "Get all color"
+					},
+					"response": []
+				},
+				{
+					"name": "Color : GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/color/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color",
+								"1"
+							]
+						},
+						"description": "Get one color"
+					},
+					"response": []
+				},
+				{
+					"name": "Color : UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"code\": \"REP\",\n    \"hexa\": \"000000\",\n    \"name\": \"Rouge pâle\",\n    \"description\": \"Rouge pâle avec élégance\",\n    \"price\": 100.99,\n    \"finishes\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/color/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color",
+								"1"
+							]
+						},
+						"description": "Update a specific color"
+					},
+					"response": []
+				},
+				{
+					"name": "Color : DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/color/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color",
+								"1"
+							]
+						},
+						"description": "Delete specific color"
+					},
+					"response": []
+				}
+			],
+			"description": "Colors car management"
+		},
+		{
+			"name": "Car combination",
+			"item": [
+				{
+					"name": "Car : CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"PEE\",\n    \"finish\":1,\n    \"model\": 1,\n    \"battery\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/car",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car"
+							]
+						},
+						"description": "Create a combination with a finish ID, model ID and battery ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Car : GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cars"
+							]
+						},
+						"description": "Get all combinations"
+					},
+					"response": []
+				},
+				{
+					"name": "Car : GET ONE by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/car/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car",
+								"4"
+							]
+						},
+						"description": "Get a specific car combination by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Car : GET ONE by code",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/car/PEE",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car",
+								"PEE"
+							]
+						},
+						"description": "Get a specific car combination by code"
+					},
+					"response": []
+				},
+				{
+					"name": "Car : UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"code\": \"GRA\",\n\"finish\": 1,\n\"model\": 1,\n\"battery\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/car/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car",
+								"1"
+							]
+						},
+						"description": "Update a car combination"
+					},
+					"response": []
+				},
+				{
+					"name": "Car : DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/car/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car",
+								"1"
+							]
+						},
+						"description": "Delete a car combination"
+					},
+					"response": []
+				},
+				{
+					"name": "Car : CONFIGURE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"finish\":1,\n    \"model\": 1,\n    \"battery\": 1,\n    \"color\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/car/configure",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"car",
+								"configure"
+							]
+						},
+						"description": "Create a car configuration. Model is required"
+					},
+					"response": []
+				}
+			],
+			"description": "Car combinations management"
+		},
+		{
+			"name": "APP : Health check",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/health",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"health"
+					]
+				},
+				"description": "Check if APP components are alive"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "P@ssw0rd!",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

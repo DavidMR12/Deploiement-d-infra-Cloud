@@ -1,0 +1,27 @@
+{
+  "404-page": {
+    "configurator-btn": "Configurer un véhicule",
+    "content": "<p><strong>La page que vous recherchez n'existe pas.</strong></p>",
+    "title": "<span class=\"text--accent\">Oups...</span> <br> Il semblerait que vous soyez perdu.e"
+  },
+  "back": "Retour",
+  "back-to-home": "Retour au configurateur",
+  "cancel": "Annuler",
+  "configure": "Configurer",
+  "continue": "Continuer",
+  "edit": "Modifier",
+  "errors": {
+    "general": "Une erreur est survenue",
+    "global-with-code": "Une erreur est survenue, code erreur :"
+  },
+  "go-home": "Revenir à l'accueil",
+  "hide": "masquer",
+  "loading": "Chargement ...",
+  "or": "ou",
+  "select": "Sélectionner",
+  "show": "voir",
+  "starting-from": "à partir de",
+  "submit": "Valider",
+  "switch-title": "Véhicules",
+  "with-tax": "TTC"
+}

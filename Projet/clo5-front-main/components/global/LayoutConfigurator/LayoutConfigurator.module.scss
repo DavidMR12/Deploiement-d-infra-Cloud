@@ -1,0 +1,46 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.layout-configurator {
+  margin-top: var(--header--height);
+  background-color: var(--gray--200);
+
+  @include media-breakpoint-up(lg) {
+    height: calc((var(--vh, 1vh) * 100) - var(--header--height) - var(--cta-bar--height));
+  }
+
+  &__configurator {
+    display: grid;
+    grid-template-columns: 8fr 7fr;
+    height: 100%;
+    overflow: hidden;
+
+    @include media-breakpoint-down(lg) {
+      display: block;
+      height: auto;
+    }
+  }
+
+  &__wrap {
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5.8rem 10vw 5.8rem var(--padding--body);
+
+    @include media-breakpoint-between(lg, xl) {
+      padding: 5.8rem var(--padding--body) 5.8rem;
+    }
+
+    @include media-breakpoint-down(lg) {
+      padding:
+        var(--padding--body)
+        var(--padding--body)
+        calc(var(--cta-bar--height) + var(--padding--body) + 1rem)
+        var(--padding--body);
+    }
+
+    &__content {
+      margin: auto 0;
+    }
+  }
+}

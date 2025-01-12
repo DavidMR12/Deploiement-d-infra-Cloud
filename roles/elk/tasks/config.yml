@@ -1,0 +1,28 @@
+---
+
+- name: Create index pattern in Kibana
+  uri:
+    url: "http://172.16.237.124:5601/api/index_patterns/index_pattern"
+    method: POST
+    headers: '{"kbn-xsrf":"anything"}'
+    body: '{"index_pattern":{"title":"ansible-*","timeFieldName":"@timestamp"}}'
+    status_code: 200
+    user: "makoss_d"
+    password: "password"
+    body_format: json
+  register: index_pattern
+  failed_when: "index_pattern.status != 200"
+
+- name: Import Ansible Dashboard in Kibana
+  uri:
+    url: "http://172.16.237.124:5601/api/kibana/dashboards/import"
+    method: POST
+    headers: '{"kbn-xsrf":"anything"}'
+    body_format: json
+    body: '{"objects":[{"id":"","type":"dashboard","version":1,"attributes":{"title":"Ansible Deployment Dashboard","panelsJSON":"[{\"id\":\"1\",\"type\":\"visualization\",\"panelIndex\":1,\"gridData\":{\"x\":0,\"y\":0,\"w\":12,\"h\":3},\"version\":\"8.0.0\",\"embeddableConfig\":{},\"panelRefName\":\"panel_1\"}]","optionsJSON":"{\"useMargins\":true,\"hidePanelTitles\":false}","version":1},"references":[]}]}'
+    status_code: 200
+    user: "makoss_d"
+    password: "password"
+    body_format: json
+  register: import_dashboard
+  failed_when: "import_dashboard.status != 200"

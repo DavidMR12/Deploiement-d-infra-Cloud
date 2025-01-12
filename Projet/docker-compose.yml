@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=quantum-motors
+    ports:
+      - 3307:3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - backend
+  
+  clo5-backend-master:
+    depends_on:
+      - mysqldb
+    build: ./clo5-backend-master
+    restart: unless-stopped
+    ports:
+      - 6868:8080
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=
+      - DB_PORT=3306
+      - CLIENT_ORIGIN=http://127.0.0.1:8888
+    networks:
+      - backend
+      - frontend
+
+  clo5-front-main:
+    depends_on:
+      - clo5-backend-master
+    build:
+      context: ./clo5-front-main
+      args:
+        - REACT_APP_API_BASE_URL=http://127.0.0.1:6868/api
+    ports:
+      - 8888:80
+    networks:
+      - frontend  
+
+volumes: 
+  db:
+
+networks:
+  backend:
+  frontend:

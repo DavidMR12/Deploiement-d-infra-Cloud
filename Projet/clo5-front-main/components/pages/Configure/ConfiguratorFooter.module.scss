@@ -1,0 +1,213 @@
+@use "../../../assets/styles/common/breakpoints" as *;
+
+.configurator-footer {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  color: var(--color--light);
+  height: var(--cta-bar--height);
+  background-color: var(--gray--700);
+  display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-down(lg) {
+    height: auto;
+  }
+
+  ::selection {
+    color: var(--color--dark);
+    background-color: #fff;
+  }
+
+  &__calculator-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color--light);
+    transition: var(--color--fast);
+    font-family: var(--font-family--primary);
+    font-size: var(--font-size--xs);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+
+    svg {
+      margin: -1rem 0;
+
+      path {
+        fill: var(--color--light);
+      }
+    }
+  }
+
+  &__legals {
+    background-color: var(--color--light);
+    border-top: 1px solid var(--gray--500);
+    padding: 1.2rem var(--padding--body);
+    color: var(--color--body);
+    font-weight: 400;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+
+    [class="form-checkbox"] {
+      justify-content: flex-end;
+    }
+
+    .button,
+    button,
+    a {
+      color: var(--color--body);
+      font-weight: 400;
+      font-size: var(--font-size--sm);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color--brand-a);
+      }
+    }
+  }
+
+  &__top {
+    padding: 2.6rem var(--padding--body);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media-breakpoint-down(lg) {
+      gap: 1rem;
+      padding: 1.5rem var(--padding--body);
+    }
+
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
+
+  &__bottom {
+    background-color: rgb(0 0 0 / 15%);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: auto;
+
+    @include media-breakpoint-down(lg) {
+      padding-top: 0.9rem;
+      padding-bottom: 0.6rem;
+    }
+  }
+
+  &__text {
+    font-size: var(--font-size--h4);
+    font-weight: 500;
+    display: flex;
+    align-items: baseline;
+
+    @include media-breakpoint-down(xl) {
+      font-size: var(--font-size--h6);
+    }
+
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
+      text-align: center;
+    }
+
+    &__leasing {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      @include media-breakpoint-down(lg) {
+        margin-bottom: 1rem;
+      }
+
+      @include media-breakpoint-down(md) {
+        align-items: center;
+      }
+    }
+
+    &__switch {
+      font-size: var(--font-size--md);
+
+      @include media-breakpoint-up(lg) {
+        display: inline-block;
+        margin-left: 3rem;
+      }
+
+      @include media-breakpoint-between(lg, xl) {
+        margin-left: 1.6rem;
+      }
+
+      @include media-breakpoint-down(md) {
+        margin: 0.5rem 0;
+      }
+
+      button[class*="custom-switch"] {
+        transform: translateY(0.2rem);
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+    @include media-breakpoint-down(xl) {
+      gap: 1.6rem;
+      text-align: center;
+    }
+
+    @include media-breakpoint-down(md) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__warning {
+      max-width: 48rem;
+      text-align: right;
+      font-size: var(--font-size--sm);
+
+      @include media-breakpoint-down(xl) {
+        max-width: 32rem;
+      }
+
+      @include media-breakpoint-down(md) {
+        width: 100%;
+        max-width: none;
+        text-align: center;
+        order: 3;
+      }
+    }
+
+    &__error {
+      color: var(--color--light);
+      background-color: var(--color--brand-b) !important;
+      padding: 0.3rem 1rem;
+      border-radius: 0.4rem;
+      display: inline-block;
+      font-weight: 500;
+    }
+  }
+
+  [class*="skeleton__line"] {
+    width: 16rem !important;
+    opacity: 0.1;
+  }
+}

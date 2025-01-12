@@ -1,0 +1,69 @@
+---
+- name: "Creating multiple folders without disturbing previous permissions"
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+  loop:
+  - /opt/registry/
+  - /opt/registry/certs/
+  - /opt/registry/data/
+  when: "'managers' in group_names"
+
+- name : Create private key
+  openssl_privatekey:
+    path: /opt/registry/certs/registry.quantum.motors.pem
+  when: "'managers' in group_names"
+
+- name: Grab generated key to localhost
+  fetch:
+    src: /opt/registry/certs/registry.quantum.motors.pem
+    dest: /tmp/registry.quantum.motors.pem
+    flat: true
+  when: "'managers' in group_names"
+
+- name: Generate an OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: /opt/registry/certs/registry.quantum.motors.csr
+    privatekey_path: /opt/registry/certs/registry.quantum.motors.pem
+    common_name: registry.quantum.motors
+  when: "'managers' in group_names"
+
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: /opt/registry/certs/registry.quantum.motors.crt
+    privatekey_path: /opt/registry/certs/registry.quantum.motors.pem
+    csr_path: /opt/registry/certs/registry.quantum.motors.csr
+    provider: selfsigned
+  when: "'managers' in group_names"
+
+- name: Grab generated cert to localhost
+  fetch:
+    src: /opt/registry/certs/registry.quantum.motors.crt
+    dest: /tmp/registry.quantum.motors.crt
+    flat: true
+  when: "'managers' in group_names"
+
+- name: Create certs dir for registry for all members of the cluster
+  file:
+    path: "/etc/docker/certs.d/registry.quantum.motors:5000/"
+    state: directory
+    recurse: true
+
+- name: Export cert to all members of the cluster
+  copy:
+    src: /tmp/registry.quantum.motors.crt
+    dest: /etc/docker/certs.d/registry.quantum.motors:5000/registry.quantum.motors.crt
+
+- name: Copy SSL/TLS certificate to GitLab server
+  copy:
+    src: /tmp/registry.quantum.motors.crt
+    dest: /etc/gitlab/ssl/registry.quantum.motors.crt
+  when: "'managers' in group_names"
+
+- name: Copy SSL/TLS key to GitLab server
+  become: true
+  copy:
+    src: /tmp/registry.quantum.motors.pem
+    dest: /etc/gitlab/ssl/registry.quantum.motors.pem
+  when: "'managers' in group_names"

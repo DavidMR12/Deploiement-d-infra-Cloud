@@ -1,0 +1,22 @@
+{
+  "batteries": "Batteries",
+  "battery": "Batterie",
+  "color": "Couleur",
+  "colors": "Couleurs",
+  "combination-not-found": {
+    "text": "Cette combinaison pour ce modèle de véhicule n'existe pas.",
+    "title": "Une erreur est survenue"
+  },
+  "finish": "Finition",
+  "finishes": "Finitions",
+  "for": "à",
+  "model": "Modèle",
+  "models": "Modèles",
+  "switch-model": "Changer de modèle",
+  "switch-model-modal": {
+    "cancel": "Annuler",
+    "confirm": "Oui, changer de modèle",
+    "text": "Retourner à l'accueil pour changer de modèle ? Vous allez perdre la configuration véhicule en cours.",
+    "title": "Changer de modèle"
+  }
+}

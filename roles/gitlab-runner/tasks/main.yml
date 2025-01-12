@@ -1,0 +1,6 @@
+---
+# tasks file for gitlab-runner
+
+# - include_tasks: install.yml
+
+- include_tasks: config.yml

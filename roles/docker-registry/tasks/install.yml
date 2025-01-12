@@ -1,0 +1,32 @@
+---
+# https://docs.ansible.com/ansible/2.9/modules/docker_swarm_service_module.html#docker-swarm-service-module
+# https://docs.ansible.com/ansible/2.9/modules/firewalld_module.html#firewalld-module
+
+- name: Ensure Docker is installed
+  package:
+    name: docker-ce
+    state: present
+
+- name: Install dependancies to manage packages
+  apt:
+    name:
+      - python3-pip
+      - python3-docker
+      - python3-openssl
+      - gcc
+      - libssl-dev
+    update_cache: yes
+  when: "'managers' in group_names"
+
+- name: Deploy Docker registry service
+  docker_swarm_service:
+    name: registry
+    image: "registry:2"
+    replicas: 1
+    publish:
+      - published_port: 5000
+        target_port: 5000
+    state: present
+  notify: Restart Docker
+  when: "'managers' in group_names"
+
